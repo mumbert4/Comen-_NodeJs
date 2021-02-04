@@ -1,17 +1,27 @@
-const fs = require('fs');//file sistem
+const http = require('http');
 
-// fs.writeFile('./texte.txt','linia u',function (err){// cream un archiu texte.txt dins el mateix directori amb el texte "linia u"
-//     if(err){
-//         console.log(err);
-//     }
-//     console.log('Archiu creat');
-// });
+const colors = require('colors');
+// console.log(http);
 
-// console.log('darrera linia de codi');
+// http.createServer(function(req, res){//req -> request, res -> respond
+//     res.writeHead(404, {'content-type': 'text/plain'});// aixo son codis per saber si la peticio ha anat be o no i si no hi anat a on ha fallat
+//     res.write('Supa Hot fire');
+//     res.end();//acabar la resposta
+// }).listen(3000);
 
-fs.readFile('./texte.txt', function(err,data){
-    if(err){
-        console.log(err);
-    }
-    console.log(data.toString());//txte.toString()-> passa les dades a string per a poder entender-ho sinos surt un buffer de simbols que no entenem
+//realitza la mateixa funcio
+
+const handleServer = function(req, res){//req -> request, res -> respond
+    res.writeHead(200, {'content-type': 'text/html'});// aixo son codis per saber si la peticio ha anat be o no i si no hi anat a on ha fallat
+    res.write('<h1>Supa Hot fire</h1>');
+    res.end();//acabar la resposta
+}
+
+const server= http.createServer(handleServer);
+
+server.listen(3000,function(){//feim escoltar el servidor pel port 3000
+    console.log('Server on port 3000'.yellow);
 });
+
+
+//npmjs.com repositori de codi de js de molta gent 
